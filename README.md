@@ -1,64 +1,69 @@
-Example plain HTML site using GitLab Pages.
 
-Learn more about GitLab Pages at https://pages.gitlab.io and the official
-documentation https://docs.gitlab.com/ce/user/project/pages/.
 
----
+![Github Forks](https://img.shields.io/github/forks/senli1073/senli1073.github.io?style=flat)
+![Github Stars](https://img.shields.io/github/stars/senli1073/senli1073.github.io?style=flat)
+![License](https://img.shields.io/github/license/senli1073/senli1073.github.io)
+![Last Commit](https://img.shields.io/github/last-commit/senli1073/senli1073.github.io)
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+# A simple Github Pages template for academic personal website.
 
-- [GitLab CI](#gitlab-ci)
-- [GitLab User or Group Pages](#gitlab-user-or-group-pages)
-- [Did you fork this project?](#did-you-fork-this-project)
-- [Troubleshooting](#troubleshooting)
+## Preview
+[![Screenshot of the Website](https://raw.githubusercontent.com/senli1073/senli1073.github.io/main/screenshot_full.png)](https://senli1073.github.io/)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## GitLab CI
+## Introduction
 
-This project's static Pages are built by [GitLab CI][ci], following the steps
-defined in [`.gitlab-ci.yml`](.gitlab-ci.yml):
+This is an academic personal website template based on [bootstrap](https://github.com/StartBootstrap/startbootstrap-new-age).
 
+The template is designed to integrate Markdown files as content input.  There's no need to compile the webpage before deployment.  Upon loading, the Markdown files are automatically parsed and embedded into the page.
+
+This template supports LaTeX formula input. You can use `$...$` and `\(...\)` as delimiters for inline-math, or use `$$...$$` and `\[...\]` as delimiters for display-math. Macros such as `\ref{...}`, `\eqref{...}`, and `\begin{equation}...\end{equation}` are also supported. See [MathJax](https://docs.mathjax.org/en/latest/index.html) for more details.
+
+:milky_way: Demo: https://senli1073.github.io/
+
+
+## Getting Start
+### 1. Fork this repository
+The repository name should be `<username>.github.io`, which will also be your website's URL.
+
+
+### 2. Edit page content
+
+(1) Go to the folder where you want to store your project, and clone the new repository:
 ```
-image: busybox
+git clone https://github.com/<username>/<username>.github.io.git
+```
+The directory structure is as follows:
 
-pages:
-  stage: deploy
-  script:
-  - echo 'Nothing to do...'
-  artifacts:
-    paths:
-    - public
-    expire_in: 1 day
-  rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+```.
+.
+├── contents
+└── static
+    ├── assets
+    │   └── img
+    ├── css
+    └── js
 ```
 
-The above example expects to put all your HTML files in the `public/` directory.
+(2) Modify the content of each section, which corresponds to `contents/*.md`.
 
-## GitLab User or Group Pages
+(3) Adjust the title, copyright information, and other text of the website in `contents/config.yml`
 
-To use this project as your user/group website, you will need one additional
-step: just rename your project to `namespace.gitlab.io`, where `namespace` is
-your `username` or `groupname`. This can be done by navigating to your
-project's **Settings**.
+(4) Replace background image and photo with new ones for your web pages in `static/assets/img/`
 
-Read more about [user/group Pages][userpages] and [project Pages][projpages].
+(5) Push it: 
+```
+git commit -am 'init'
+git push
+```
 
-## Did you fork this project?
 
-If you forked this project for your own use, please go to your project's
-**Settings** and remove the forking relationship, which won't be necessary
-unless you want to contribute back to the upstream project.
+### 3. Enjoy
 
-## Troubleshooting
+Fire up a browser and go to `https://<username>.github.io`
 
-1. CSS is missing! That means that you have wrongly set up the CSS URL in your
-   HTML files. Have a look at the [index.html] for an example.
 
-[ci]: https://about.gitlab.com/gitlab-ci/
-[index.html]: https://gitlab.com/pages/plain-html/blob/master/public/index.html
-[userpages]: https://docs.gitlab.com/ce/user/project/pages/introduction.html#user-or-group-pages
-[projpages]: https://docs.gitlab.com/ce/user/project/pages/introduction.html#project-pages
+
+## License
+
+Copyright Sen Li, 2023. Licensed under an MIT license. You can copy and mess with this template.
