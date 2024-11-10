@@ -39,7 +39,7 @@ document.getElementById('save-button').addEventListener('click', function() {
         // 使用 dom-to-image 生成完整截图
         domtoimage.toPng(container, {
             width: containerWidth,    // 设置宽度为容器的实际宽度
-            height: containerHeight+20,  // 设置高度为容器的实际高度
+            height: containerHeight+50,  // 设置高度为容器的实际高度
             style: {
                 transform: 'scale(1)', // 确保没有缩放
                 transformOrigin: 'top left', // 保持左上角为原点
