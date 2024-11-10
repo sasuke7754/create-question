@@ -4,13 +4,17 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' />
+    <link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css" />
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg">
     <script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
+
+    <!-- 引入 dom-to-image 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image@2.6.0/dist/dom-to-image.min.js"></script>
+    
     <meta name="description" content="Blog description">
     <meta property="og:title" content="Blog Title">
     <meta property="og:description" content="Blog description">
@@ -28,8 +32,13 @@
     </header>
     <main id="content">
         <div class="test-title">今日测试题，宝宝准备好了吗</div>
+        <input type="text" id="day-input" placeholder="请输入第几天">
         <button class="start-button">准备答题</button>
-        <div id="questions-container"></div>
+		<div id="main-container">
+			<div id="day-display" style="text-align: center; color: red; font-size: 20px; margin-top: 20px;"></div>
+        	<div id="questions-container"></div>
+		</div>
+        <button id="save-button">保存截图</button>
     </main>
     <footer id="footer">
         &copy; 2023 每日一个小测试

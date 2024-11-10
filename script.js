@@ -1,4 +1,15 @@
 document.querySelector('.start-button').addEventListener('click', function() {
+    const day = document.getElementById('day-input').value;
+    if (!day) {
+        alert('请输入第几天');
+        return;
+    }
+
+    // 显示“这是第几天”信息
+    const dayDisplay = document.getElementById('day-display');
+    dayDisplay.textContent = `这是第 ${day} 天`;
+    
+    // 获取问题数据
     fetch('questions.json')
         .then(response => response.json())
         .then(data => {
@@ -7,6 +18,48 @@ document.querySelector('.start-button').addEventListener('click', function() {
         })
         .catch(error => console.error('Error fetching the questions:', error));
 });
+
+document.getElementById('save-button').addEventListener('click', function() {
+    const day = document.getElementById('day-input').value;
+    if (!day) {
+        alert('请输入第几天');
+        return;
+    }
+
+    // 获取需要截图的容器
+    const container = document.getElementById('main-container');
+
+    // 确保容器渲染完成
+    setTimeout(() => {
+        // 获取容器的高度和宽度
+        const containerWidth = container.scrollWidth;
+        const containerHeight = container.scrollHeight;
+
+
+        // 使用 dom-to-image 生成完整截图
+        domtoimage.toPng(container, {
+            width: containerWidth,    // 设置宽度为容器的实际宽度
+            height: containerHeight+20,  // 设置高度为容器的实际高度
+            style: {
+                transform: 'scale(1)', // 确保没有缩放
+                transformOrigin: 'top left', // 保持左上角为原点
+                overflow: 'visible', // 确保内容不会被裁剪
+            }
+        })
+        .then(function(dataUrl) {
+            // 创建隐藏的下载链接
+            const a = document.createElement('a');
+            a.href = dataUrl;
+            a.download = `day-${day}.png`;
+            a.click();
+        })
+        .catch(function(error) {
+            console.error('Error generating image:', error);
+        });
+    }, 200); // 延迟200ms确保渲染完成
+});
+
+
 
 function getRandomQuestions(questions, count) {
     const books = {
